@@ -2,18 +2,25 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
+
+html { height: 100%; overflow-x: hidden; }
 
 body {
   font-family: 'Nunito', sans-serif;
   background: #fce4ec;
   background-image: radial-gradient(circle at 20% 20%, #f8bbd0 0%, transparent 50%),
                     radial-gradient(circle at 80% 80%, #ffd6e0 0%, transparent 50%);
+  background-attachment: fixed;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   min-height: 100vh;
-  padding: 24px 16px 40px;
+  min-height: -webkit-fill-available;
+  padding: 24px 16px 48px;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* ── EKRANLAR ── */
@@ -26,10 +33,7 @@ body {
   gap: 0;
   margin: 0 auto;
 }
-
-.hidden {
-  display: none !important;
-}
+.hidden { display: none !important; }
 
 /* ── BAŞLIK ── */
 .title {
@@ -39,14 +43,12 @@ body {
   text-align: center;
   margin-bottom: 6px;
 }
-
 .title-sm {
   font-size: 1.2rem;
   font-weight: 800;
   color: #6b4c4c;
   text-align: center;
 }
-
 .subtitle {
   font-size: 0.95rem;
   color: #9e7c7c;
@@ -54,7 +56,7 @@ body {
   margin-bottom: 24px;
 }
 
-/* ── BAŞLANGIÇ BİLGİ KUTUSU ── */
+/* ── BAŞLANGIÇ BİLGİ ── */
 .start-info {
   display: flex;
   flex-direction: column;
@@ -66,7 +68,6 @@ body {
   margin-bottom: 20px;
   width: 100%;
 }
-
 .info-item {
   font-size: 0.95rem;
   font-weight: 600;
@@ -77,11 +78,7 @@ body {
 }
 
 /* ── AD GİRİŞİ ── */
-.input-group {
-  width: 100%;
-  margin-bottom: 16px;
-}
-
+.input-group { width: 100%; margin-bottom: 16px; }
 .input-group label {
   display: block;
   font-size: 0.9rem;
@@ -89,7 +86,6 @@ body {
   color: #6b4c4c;
   margin-bottom: 8px;
 }
-
 .input-group input {
   width: 100%;
   padding: 13px 16px;
@@ -103,15 +99,8 @@ body {
   outline: none;
   transition: border-color 0.2s;
 }
-
-.input-group input:focus {
-  border-color: #f48fb1;
-}
-
-.input-group input::placeholder {
-  color: #c9a0a8;
-  font-weight: 400;
-}
+.input-group input:focus { border-color: #f48fb1; }
+.input-group input::placeholder { color: #c9a0a8; font-weight: 400; }
 
 /* ── BUTONLAR ── */
 .start-btn {
@@ -130,12 +119,10 @@ body {
   transition: all 0.2s ease;
   margin-bottom: 12px;
 }
-
 .start-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 28px rgba(233, 30, 140, 0.38);
 }
-
 .scoreboard-btn {
   width: 100%;
   padding: 13px;
@@ -149,11 +136,7 @@ body {
   cursor: pointer;
   transition: all 0.2s ease;
 }
-
-.scoreboard-btn:hover {
-  background: #fff0f3;
-  border-color: #f48fb1;
-}
+.scoreboard-btn:hover { background: #fff0f3; border-color: #f48fb1; }
 
 /* ── OYUN HEADER ── */
 .header {
@@ -162,7 +145,6 @@ body {
   margin-bottom: 12px;
   position: relative;
 }
-
 #player-name-display {
   font-size: 0.8rem;
   font-weight: 700;
@@ -176,11 +158,11 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
   padding: 0 2px;
   width: 100%;
+  gap: 8px;
 }
-
 #progress {
   font-size: 0.95rem;
   font-weight: 700;
@@ -189,22 +171,38 @@ body {
   padding: 5px 12px;
   border-radius: 20px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+  white-space: nowrap;
 }
 
-.timer-section {
+/* ── SERİ GÖSTERGESI ── */
+#streak-display {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #ff4f00;
+  background: #fff3e0;
+  border: 1.5px solid #ffcc80;
+  padding: 4px 12px;
+  border-radius: 20px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
+  animation: streakPop 0.3s ease;
+}
+@keyframes streakPop {
+  0%   { transform: scale(0.8); }
+  60%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
 }
 
+/* ── TIMER ── */
+.timer-section { display: flex; align-items: center; gap: 8px; }
 .timer-wrapper {
-  width: 110px;
+  width: 100px;
   height: 8px;
   background: #ffd6e0;
   border-radius: 10px;
   overflow: hidden;
 }
-
 #timer-bar {
   height: 100%;
   width: 100%;
@@ -212,11 +210,7 @@ body {
   border-radius: 10px;
   transition: width 1s linear, background 0.5s;
 }
-
-#timer-bar.warning {
-  background: linear-gradient(90deg, #ff4444, #cc0000);
-}
-
+#timer-bar.warning { background: linear-gradient(90deg, #ff4444, #cc0000); }
 #timer-text {
   font-size: 0.85rem;
   font-weight: 700;
@@ -224,10 +218,58 @@ body {
   min-width: 28px;
   text-align: right;
 }
+#timer-text.warning { color: #cc0000; }
 
-#timer-text.warning {
-  color: #cc0000;
+/* ── JOKER BARI ── */
+#joker-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  justify-content: center;
 }
+.joker-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border: 2px solid #ffd6e0;
+  border-radius: 24px;
+  background: #fff8f9;
+  color: #6b4c4c;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(200,100,120,0.1);
+}
+.joker-btn:hover:not(.used) {
+  background: #fff0f3;
+  border-color: #f48fb1;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 14px rgba(200,100,120,0.2);
+}
+.joker-btn.used {
+  opacity: 0.35;
+  cursor: default;
+  filter: grayscale(1);
+}
+.joker-btn.active {
+  background: #fff3e0;
+  border-color: #ff9800;
+  color: #e65100;
+  box-shadow: 0 0 0 3px rgba(255,152,0,0.25);
+}
+.joker-icon { font-size: 1.1rem; }
+.joker-label { font-size: 0.82rem; }
+
+@keyframes jokerFlash {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.15); box-shadow: 0 0 0 6px rgba(244,143,177,0.3); }
+  100% { transform: scale(1); }
+}
+.joker-flash { animation: jokerFlash 0.6s ease; }
 
 /* ── SORU KUTUSU ── */
 .question-box {
@@ -243,12 +285,19 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
-  transition: opacity 0.3s ease, transform 0.3s ease;
 }
-
-.question-box.hidden {
-  opacity: 0;
-  transform: translateY(10px);
+.question-box.slide-out {
+  animation: slideOut 0.3s ease forwards;
+}
+.question-box.slide-in {
+  animation: slideIn 0.35s ease forwards;
+}
+@keyframes slideOut {
+  to { opacity: 0; transform: translateX(-30px); }
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 #question {
@@ -258,6 +307,29 @@ body {
   text-align: center;
 }
 
+/* ── AÇIKLAMA KUTUSU ── */
+#explanation-box {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px 16px;
+  background: #fffde7;
+  border: 1.5px solid #ffe082;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #6d4c00;
+  line-height: 1.5;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.35s ease, margin 0.3s;
+}
+#explanation-box.show {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 10px;
+}
+
 /* ── ŞIKLAR ── */
 .answers {
   display: grid;
@@ -265,7 +337,6 @@ body {
   gap: 10px;
   width: 100%;
 }
-
 .answer-btn {
   padding: 14px 10px;
   border: 2px solid #ffd6e0;
@@ -283,7 +354,6 @@ body {
   gap: 8px;
   text-align: left;
 }
-
 .answer-btn .letter {
   background: #ffd6e0;
   color: #6b4c4c;
@@ -298,27 +368,19 @@ body {
   flex-shrink: 0;
   transition: background 0.2s;
 }
-
-.answer-btn .answer-text {
-  flex: 1;
-}
-
+.answer-btn .answer-text { flex: 1; }
 .answer-btn:not(:disabled):hover {
   background: #fff0f3;
   border-color: #ff9fb5;
   transform: translateY(-2px);
 }
-
-.answer-btn:not(:disabled):hover .letter {
-  background: #ffb3c6;
-}
+.answer-btn:not(:disabled):hover .letter { background: #ffb3c6; }
 
 .answer-btn.thinking {
   animation: pulse 0.7s ease infinite;
   border-color: #c0a0a8;
   background: #ffeef2;
 }
-
 @keyframes pulse {
   0%   { transform: scale(1); }
   50%  { transform: scale(1.03); box-shadow: 0 6px 18px rgba(200,100,120,0.22); }
@@ -331,30 +393,86 @@ body {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+/* Elenen şık (50:50) */
+.answer-btn.eliminated {
+  opacity: 0.15 !important;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
 .answer-btn.correct {
   background: #e8f8e8 !important;
   border-color: #4caf50 !important;
   color: #2e7d32 !important;
 }
-
 .answer-btn.correct .letter {
   background: #4caf50 !important;
   color: white !important;
 }
-
 .answer-btn.wrong {
   background: #fdecea !important;
   border-color: #f44336 !important;
   color: #c62828 !important;
 }
-
 .answer-btn.wrong .letter {
   background: #f44336 !important;
   color: white !important;
 }
+.answer-btn:disabled { cursor: default; }
 
-.answer-btn:disabled {
-  cursor: default;
+/* ── PUAN POPUP ── */
+.points-popup {
+  position: fixed;
+  transform: translateX(-50%);
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #2e7d32;
+  background: #e8f8e8;
+  border: 1.5px solid #81c784;
+  padding: 4px 14px;
+  border-radius: 20px;
+  pointer-events: none;
+  z-index: 999;
+  animation: floatUp 1.2s ease forwards;
+}
+@keyframes floatUp {
+  0%   { opacity: 1; transform: translateX(-50%) translateY(0); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-60px); }
+}
+
+/* ── TOAST ── */
+#toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #4a3030;
+  color: white;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 10px 22px;
+  border-radius: 24px;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+#toast.toast-show { opacity: 1; }
+#toast.toast-hide { opacity: 0; }
+
+/* ── KONFETİ ── */
+.confetti-piece {
+  position: fixed;
+  top: -20px;
+  pointer-events: none;
+  z-index: 9999;
+  animation: confettiFall linear forwards;
+}
+@keyframes confettiFall {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
 }
 
 /* ── SONUÇ KUTUSU ── */
@@ -368,16 +486,13 @@ body {
   animation: popIn 0.4s ease;
   width: 100%;
 }
-
 @keyframes popIn {
   from { opacity: 0; transform: scale(0.93); }
   to   { opacity: 1; transform: scale(1); }
 }
-
 .result-box .emoji { font-size: 2.8rem; margin-bottom: 10px; }
 .result-box h2 { font-size: 1.4rem; font-weight: 800; color: #4a3030; margin-bottom: 6px; }
 .result-box .score-detail { font-size: 0.95rem; color: #9e7c7c; margin-bottom: 4px; }
-
 .result-box .motivation {
   font-size: 0.95rem;
   font-weight: 700;
@@ -387,7 +502,6 @@ body {
   background: #fff0f3;
   border-radius: 10px;
 }
-
 .restart-btn {
   width: 100%;
   margin-top: 12px;
@@ -403,7 +517,6 @@ body {
   box-shadow: 0 4px 14px rgba(255, 80, 120, 0.3);
   transition: all 0.2s;
 }
-
 .restart-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(255, 80, 120, 0.4);
@@ -417,7 +530,6 @@ body {
   gap: 10px;
   margin-top: 16px;
 }
-
 .score-entry {
   background: #fff8f9;
   border: 1.5px solid #ffd6e0;
@@ -428,7 +540,6 @@ body {
   gap: 14px;
   box-shadow: 0 3px 10px rgba(200,100,120,0.07);
 }
-
 .score-rank {
   font-size: 1.3rem;
   font-weight: 800;
@@ -436,33 +547,16 @@ body {
   min-width: 32px;
   text-align: center;
 }
-
 .score-rank.gold   { color: #f5a623; }
 .score-rank.silver { color: #9e9e9e; }
 .score-rank.bronze { color: #a0522d; }
-
-.score-info {
-  flex: 1;
-}
-
-.score-name {
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: #4a3030;
-}
-
-.score-date {
-  font-size: 0.78rem;
-  color: #b09090;
-  margin-top: 2px;
-}
-
-.score-points {
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: #c2185b;
-}
-
+.score-info { flex: 1; }
+.score-name { font-size: 0.95rem; font-weight: 800; color: #4a3030; }
+.score-date { font-size: 0.78rem; color: #b09090; margin-top: 2px; }
+.score-points-col { text-align: right; }
+.score-pts { font-size: 1rem; font-weight: 800; color: #c2185b; }
+.score-frac { font-size: 0.78rem; color: #b09090; margin-top: 2px; }
+.score-frac span { font-size: 0.72rem; }
 .empty-scores {
   text-align: center;
   color: #b09090;
@@ -471,11 +565,18 @@ body {
 }
 
 /* ── MOBİL ── */
+@media (max-width: 480px) {
+  body { padding: 16px 14px 36px; }
+  .screen { width: 100%; }
+}
 @media (max-width: 400px) {
-  body { padding: 16px 12px 32px; }
+  body { padding: 14px 12px 32px; }
   .title { font-size: 1.7rem; }
-  #question { font-size: 0.97rem; }
-  .answer-btn { font-size: 0.82rem; padding: 12px 8px; }
+  #question { font-size: 0.95rem; }
+  .answer-btn { font-size: 0.82rem; padding: 12px 8px; gap: 6px; }
   .answer-btn .letter { width: 22px; height: 22px; font-size: 0.72rem; }
-  .timer-wrapper { width: 90px; }
+  .timer-wrapper { width: 80px; }
+  .start-info { padding: 14px 16px; }
+  .input-group input { padding: 11px 14px; }
+  .joker-btn { padding: 7px 12px; font-size: 0.8rem; }
 }

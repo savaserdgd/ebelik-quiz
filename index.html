@@ -16,9 +16,10 @@
   <p class="subtitle">Bilgini test et, kendini geliştir!</p>
 
   <div class="start-info">
-    <div class="info-item">📋 <span>5 Soru</span></div>
+    <div class="info-item">📋 <span>10 Rastgele Soru</span></div>
     <div class="info-item">⏱️ <span>Her soru 15 saniye</span></div>
-    <div class="info-item">🏆 <span>Sonunda skorunu gör</span></div>
+    <div class="info-item">🃏 <span>2 Joker hakkın var</span></div>
+    <div class="info-item">🏆 <span>Hızlı cevapla daha fazla puan kazan!</span></div>
   </div>
 
   <div class="input-group">
@@ -38,13 +39,26 @@
   </div>
 
   <div class="top-bar">
-    <span id="progress">1 / 5</span>
+    <span id="progress">1 / 10</span>
+    <div id="streak-display" style="display:none"></div>
     <div class="timer-section">
       <div class="timer-wrapper">
         <div id="timer-bar"></div>
       </div>
       <span id="timer-text">15s</span>
     </div>
+  </div>
+
+  <!-- JOKER BARI -->
+  <div id="joker-bar">
+    <button id="joker-5050" class="joker-btn" onclick="use5050()" title="50:50 – İki yanlış şıkkı kaldır">
+      <span class="joker-icon">🃏</span>
+      <span class="joker-label">50:50</span>
+    </button>
+    <button id="joker-double" class="joker-btn" onclick="useDouble()" title="Çift Cevap – Bu soruda 2 şık seç">
+      <span class="joker-icon">✌️</span>
+      <span class="joker-label">Çift Cevap</span>
+    </button>
   </div>
 
   <div class="question-box" id="question-box">
