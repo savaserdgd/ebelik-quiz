@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Ebelik Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ── BAŞLANGIÇ EKRANI ── -->
+<div class="screen" id="start-screen">
+  <h1 class="title">🌸 Ebelik Quiz</h1>
+  <p class="subtitle">Bilgini test et, kendini geliştir!</p>
+
+  <div class="start-info">
+    <div class="info-item">📋 <span>5 Soru</span></div>
+    <div class="info-item">⏱️ <span>Her soru 15 saniye</span></div>
+    <div class="info-item">🏆 <span>Sonunda skorunu gör</span></div>
+  </div>
+
+  <div class="input-group">
+    <label for="username">Adın nedir?</label>
+    <input type="text" id="username" placeholder="Adını gir..." maxlength="20" autocomplete="off"/>
+  </div>
+
+  <button class="start-btn" onclick="handleStart()">Başla 🌸</button>
+  <button class="scoreboard-btn" onclick="showScreen('scoreboard-screen')">🏅 Skor Tablosu</button>
+</div>
+
+<!-- ── OYUN EKRANI ── -->
+<div class="screen hidden" id="game-screen">
+  <div class="header">
+    <span id="player-name-display"></span>
+    <h1 class="title-sm">🌸 Ebelik Quiz</h1>
+  </div>
+
+  <div class="top-bar">
+    <span id="progress">1 / 5</span>
+    <div class="timer-section">
+      <div class="timer-wrapper">
+        <div id="timer-bar"></div>
+      </div>
+      <span id="timer-text">15s</span>
+    </div>
+  </div>
+
+  <div class="question-box" id="question-box">
+    <h2 id="question"></h2>
+  </div>
+
+  <div class="answers" id="answers">
+    <button class="answer-btn" data-index="0"><span class="letter">A</span><span class="answer-text"></span></button>
+    <button class="answer-btn" data-index="1"><span class="letter">B</span><span class="answer-text"></span></button>
+    <button class="answer-btn" data-index="2"><span class="letter">C</span><span class="answer-text"></span></button>
+    <button class="answer-btn" data-index="3"><span class="letter">D</span><span class="answer-text"></span></button>
+  </div>
+</div>
+
+<!-- ── SKOR TABLOSU EKRANI ── -->
+<div class="screen hidden" id="scoreboard-screen">
+  <h1 class="title">🏅 Skor Tablosu</h1>
+  <div id="scoreboard-list"></div>
+  <button class="start-btn" onclick="showScreen('start-screen')" style="margin-top:20px">← Geri Dön</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
