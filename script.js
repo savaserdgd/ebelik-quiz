@@ -414,6 +414,7 @@ answersContainer.addEventListener("click", (e) => {
   const btn = e.target.closest(".answer-btn");
   if (!btn || answered) return;
   if (btn.classList.contains("eliminated")) return;
+  btn.blur();
 
   const btns = getButtons();
   const index = parseInt(btn.dataset.index);

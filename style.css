@@ -369,6 +369,8 @@ body {
   transition: background 0.2s;
 }
 .answer-btn .answer-text { flex: 1; }
+.answer-btn:focus { outline: none; box-shadow: none; }
+.answer-btn:focus-visible { outline: none; box-shadow: none; }
 .answer-btn:not(:disabled):hover {
   background: #fff0f3;
   border-color: #ff9fb5;
