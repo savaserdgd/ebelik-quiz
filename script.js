@@ -10,7 +10,7 @@ let correctCount = 0;
 let wrongCount   = 0;
 let answered     = false;
 let timer;
-let timeLeft     = 15;
+let timeLeft     = 20;
 let currentPlayer = "";
 let streak       = 0;
 let maxStreak    = 0;
@@ -29,111 +29,70 @@ let answerMap = []; // her soru için [0..3] -> orijinal index
 // ── SORU BANKASI ─────────────────────────────────────────
 const allQuestions = [
   {
-    question: "Kombine Oral Kontraseptif (KOK) haplarının içinde hangi hormonlar bulunur?",
-    answers: ["Sadece östrojen", "Sadece progesteron", "Östrojen ve progesteron", "İnsülin ve adrenalin"],
+    question: "Gebeliğin 20. haftasından önce gerçekleşen gebelik kayıplarına ne denir?",
+    answers: ["Erken doğum", "Ölü doğum", "Abortus", "Preterm eylem"],
     correct: 2,
-    explanation: "KOK hapları, östrojen ve progesteron olmak üzere iki hormon içerir. Bu kombinasyon yumurtlamayı baskılayarak gebeliği önler."
+    explanation: "Gebeliğin 20. haftasından önce gerçekleşen gebelik kayıpları 'Abortus' (düşük) olarak tanımlanır."
   },
   {
-    question: "Doğru ve düzenli kullanıldığında KOK'ların gebeliği önleme başarı oranı (etki düzeyi) yaklaşık kaçtır?",
-    answers: ["%50", "%75", "%90", "%99.9"],
-    correct: 3,
-    explanation: "KOK hapları doğru ve düzenli kullanıldığında %99.9 oranında gebeliği önler; bu oran hormonal kontraseptifler arasında en yükseklerden biridir."
-  },
-  {
-    question: "Hormonal kontraseptif yöntemlerin (hap, iğne, yama vb.) ortak dezavantajı nedir?",
-    answers: ["Çok kilo verdirirler.", "Cinsel yolla bulaşan enfeksiyonlara (CYBE) karşı korumazlar.", "Sadece hastanede yatarken kullanılırlar.", "Saç dökülmesine neden olurlar."],
+    question: "Aşağıdakilerden hangisi preterm doğumun belirtilerinden biridir?",
+    answers: ["Bebek hareketlerinin artması", "10 dakikada 2'den fazla kontraksiyon", "Kan basıncının düşmesi", "İştah artışı"],
     correct: 1,
-    explanation: "Tüm hormonal kontraseptif yöntemler gebeliği önler; ancak HIV başta olmak üzere cinsel yolla bulaşan enfeksiyonlara (CYBE) karşı herhangi bir koruma sağlamazlar."
+    explanation: "10 dakikada 2'den fazla kontraksiyon preterm (erken) doğumun önemli bir belirtisidir ve hemen değerlendirilmelidir."
   },
   {
-    question: "Kombine Oral Kontraseptiflerin (KOK) en temel gebelik önleme mekanizması aşağıdakilerden hangisidir?",
-    answers: [
-      "Rahim ağzı mukusunu inceltmek",
-      "Gonadotropin salınımını baskılayarak yumurtlamayı (ovulasyonu) engellemek",
-      "Spermleri doğrudan yok etmek",
-      "Sadece rahim iç tabakasını kalınlaştırmak"
-    ],
+    question: "Preterm doğumun yönetiminde bebeğin akciğer gelişimini hızlandırmak için ne kullanılır?",
+    answers: ["Magnezyum Sülfat", "Kortikosteroidler", "Progesteron", "Tokolitik tedavi"],
     correct: 1,
-    explanation: "KOK'ların en temel etkisi; FSH ve LH gibi gonadotropinlerin salınımını baskılayarak ovulasyonu (yumurtlamayı) engellemektir."
+    explanation: "Kortikosteroidler, preterm doğum riski olan gebelerde fetal akciğer maturasyonunu (olgunlaşmasını) hızlandırmak için kullanılır."
   },
   {
-    question: "35 yaş üzerinde olan ve günde 15'ten fazla sigara içen bir kadın için KOK kullanımı hakkında ne söylenebilir?",
-    answers: [
-      "Güvenle kullanabilir.",
-      "Dozu artırarak kullanmalıdır.",
-      "Kullanımı tıbbi olarak sakıncalıdır (kontraendikedir).",
-      "Sadece emzirme döneminde kullanabilir."
-    ],
-    correct: 2,
-    explanation: "35 yaş üstü yoğun sigara kullanımı, KOK ile birleştiğinde tromboembolik (pıhtılaşma) riski ciddi ölçüde artırır ve bu durum KOK için kesin bir kontraendikasyon oluşturur."
-  },
-  {
-    question: "Deri altı implantın (Implanon) toplam koruma süresi ne kadardır?",
-    answers: ["1 yıl", "2 yıl", "3 yıl", "5 yıl"],
-    correct: 2,
-    explanation: "Etonogestrel içeren deri altı implant (Implanon), doğru yerleştirildikten sonra 3 yıl süreyle etkili gebelik koruması sağlar."
-  },
-  {
-    question: "Vajinal halka (Vajinal Ring) kullanım döngüsü nasıldır?",
-    answers: [
-      "7 gün vajinada kalır, 21 gün ara verilir.",
-      "21 gün vajinada kalır, 7 gün ara verilir.",
-      "Her cinsel ilişkiden önce takılır.",
-      "Sadece adet döneminde takılır."
-    ],
-    correct: 1,
-    explanation: "Vajinal halka 21 gün süreyle vajinada bırakılır, ardından 7 günlük ara verilir; bu 7 gün içinde adet kanaması gerçekleşir."
-  },
-  {
-    question: "Sadece progesteron içeren mini haplarda (POP), hap alımı kaç saatten fazla gecikirse ek bir korunma yöntemi gerekir?",
-    answers: ["48 saat", "12 saat", "3 saat", "24 saat"],
-    correct: 2,
-    explanation: "Mini haplar (POP) için 3 saatin üzerindeki gecikmeler, servikal mukus üzerindeki koruyucu etkiyi azaltır ve ek bariyer yöntemi kullanımını zorunlu kılar."
-  },
-  {
-    question: "Transdermal kontraseptif bant (yama) ile ilgili hangi fiziksel özellik yöntemin başarısızlık riskini artırabilir?",
-    answers: [
-      "90 kg üzerindeki vücut ağırlığı",
-      "150 cm'den kısa boy uzunluğu",
-      "Düzenli olarak güneş koruyucu kullanmak",
-      "Açık ten rengine sahip olmak"
-    ],
+    question: "Düşük (Abortus) en sık hangi dönemde görülür?",
+    answers: ["İlk trimester (ilk 12 hafta)", "16-20. haftalar arası", "20-24. haftalar arası", "Son trimester"],
     correct: 0,
-    explanation: "90 kg üzerindeki vücut ağırlığında transdermal yamadan emilen hormon miktarı yetersiz kalabilir ve bu durum yöntemin etkinliğini önemli ölçüde düşürür."
+    explanation: "Düşüklerin büyük çoğunluğu (%80'den fazlası) ilk trimesterde, yani gebeliğin ilk 12 haftasında gerçekleşir."
   },
   {
-    question: "Aşağıdakilerden hangisi Kombine Oral Kontraseptiflerin gebeliği önleme mekanizmalarından biri değildir?",
-    answers: [
-      "Endometriyumun inceltilmesi",
-      "Servikal mukusun kalınlaşması",
-      "Yumurtlamanın (ovulasyon) engellenmesi",
-      "Sperm hücrelerinin sayısını kalıcı olarak sıfırlamak"
-    ],
-    correct: 3,
-    explanation: "KOK'lar ovulasyonu engeller, servikal mukusu kalınlaştırır ve endometriyumu inceltir; ancak sperm üretimini kalıcı olarak durdurmak KOK'ların bir etkisi değildir."
+    question: "Kanama olan ancak rahim ağzının kapalı olduğu ve gebeliğin devam edebileceği düşük türü hangisidir?",
+    answers: ["Abortus Komplet (Tam düşük)", "Abortus İmminens (Tehdit düşük)", "Abortus İnkomplet (Tam olmayan düşük)", "Missed Abortus (Sessiz düşük)"],
+    correct: 1,
+    explanation: "Abortus İmminens'te (tehdit eden düşük) kanama vardır ancak rahim ağzı kapalıdır ve gebelik devam edebilir. Yatak istirahati ve yakın takip önerilir."
   },
   {
-    question: "Kombine oral kontraseptif haplar kullanılmaya başlanırken, en geç siklusun kaçıncı günü başlanmalıdır?",
-    answers: [
-      "Siklusun 14. gününde",
-      "Adet bitiminden hemen sonraki gün",
-      "Beklenen adet tarihinden bir hafta önce",
-      "Siklusun ilk 5 günü içerisinde"
-    ],
-    correct: 3,
-    explanation: "KOK'lara siklusun 1-5. günleri arasında başlanması önerilir; bu pencerede ek korunmaya gerek kalmadan hemen etki sağlanır."
+    question: "Embriyonun öldüğü ancak rahim dışına atılamadığı, genellikle ultrasonla fark edilen durum hangisidir?",
+    answers: ["Tam düşük", "Tam olmayan düşük", "Sessiz düşük (Missed Abortus)", "Kaçınılmaz düşük"],
+    correct: 2,
+    explanation: "Missed Abortus (Sessiz düşük) embriyo ölmüş olmasına rağmen vücuttan atılamamıştır; genellikle rutin ultrason kontrolünde fark edilir ve semptom vermeyebilir."
   },
   {
-    question: "Aşağıdaki durumlardan hangisi KOK kullanımı için kesin bir kontraendikasyon (engel) teşkil eder?",
-    answers: [
-      "35 yaş üzerinde olup günde 15'ten fazla sigara içmek",
-      "20 yaşın altında aktif cinsel yaşam",
-      "Adet sancılarının (dismenore) şiddetli olması",
-      "Ailede sadece bir kişide diyabet öyküsü bulunması"
-    ],
+    question: "Preterm eylemde kullanılan 'tokolitik tedavi'nin amacı nedir?",
+    answers: ["Rahim kasılmalarını durdurarak doğumu geciktirmek", "Doğumu hemen başlatmak", "Bebeğin kilosunu artırmak", "Annenin ağrısını tamamen yok etmek"],
     correct: 0,
-    explanation: "35 yaş üstü yoğun sigara kullanımı (günde ≥15 adet), KOK'larla birlikte tromboz ve kardiyovasküler komplikasyon riskini ciddi biçimde artırdığından kesin kontraendikasyon sayılır."
+    explanation: "Tokolitik tedavinin amacı, preterm eylemdeki rahim kasılmalarını yavaşlatmak veya durdurmak ve böylece bebeğe daha fazla gelişme süresi kazandırmaktır."
+  },
+  {
+    question: "Düşük (Abortus) tanımı için gebelik kaybının kaçıncı haftadan önce gerçekleşmesi gerekir?",
+    answers: ["28. hafta", "12. hafta", "24. hafta", "20. hafta"],
+    correct: 3,
+    explanation: "Gebeliğin 20. haftasından önce gerçekleşen gebelik kayıpları düşük (abortus) olarak tanımlanır; 20. haftadan sonraki kayıplar ölü doğum olarak sınıflandırılır."
+  },
+  {
+    question: "Preterm doğumların önlenmesinde rahim ağzı yetmezliği olan hastalara uygulanan cerrahi işlem nedir?",
+    answers: ["Sezaryen", "Servikal Serklaj", "Amniyosentez", "Epizyotomi"],
+    correct: 1,
+    explanation: "Servikal Serklaj, servik yetmezliği (rahim ağzı zayıflığı) olan gebelerde rahim ağzını dikmek için uygulanan cerrahi bir işlemdir ve preterm doğumu önlemeye yardımcı olur."
+  },
+  {
+    question: "Düşük materyalinin bir kısmının içeride kaldığı düşük türü hangisidir?",
+    answers: ["Abortus İnkomplet", "Abortus İmminens", "Abortus Komplet", "Tekrarlayan Düşük"],
+    correct: 0,
+    explanation: "Abortus İnkomplet'te (tam olmayan düşük) gebelik materyalinin bir kısmı uterusta kalmıştır. Küretaj (boşaltma işlemi) gerektirebilir."
+  },
+  {
+    question: "Düşüklerin en sık görüldüğü dönem hangisidir?",
+    answers: ["İlk trimester", "İkinci trimester", "Son ay", "Doğum anı"],
+    correct: 0,
+    explanation: "Düşüklerin büyük çoğunluğu ilk trimesterde (gebeliğin ilk 12 haftasında) meydana gelir. Bu dönemde kromozomal anomaliler en sık görülen nedendir."
   }
 ];
 
@@ -163,7 +122,7 @@ function handleStart() {
   currentPlayer = input || "Misafir";
 
   // Soruları karıştır, ilk 8 tanesini al
-  shuffledQuestions = shuffle(allQuestions).slice(0, 8);
+  shuffledQuestions = shuffle(allQuestions).slice(0, 10);
 
   prepareFirstQuestion();
   document.getElementById("player-name-display").innerText = "👤 " + currentPlayer;
@@ -218,7 +177,7 @@ function prepareFirstQuestion() {
   timerBar.style.width = "100%";
   timerBar.classList.remove("warning");
   timerText.classList.remove("warning");
-  timerText.innerText = "15s";
+  timerText.innerText = "20s";
 }
 
 // ── SORU GÖSTER (2. soru+) ────────────────────────────────
@@ -345,7 +304,7 @@ function calcPoints() {
 // ── SÜRE ─────────────────────────────────────────────────
 function startTimer() {
   clearInterval(timer);
-  timeLeft = 15;
+  timeLeft = 20;
   setTimeout(() => {
     timerBar.style.transition = "width 1s linear, background 0.5s";
   }, 50);
@@ -358,9 +317,9 @@ function startTimer() {
 }
 
 function updateTimer() {
-  timerBar.style.width = `${(timeLeft / 15) * 100}%`;
+  timerBar.style.width = `${(timeLeft / 20) * 100}%`;
   timerText.innerText  = timeLeft + "s";
-  if (timeLeft <= 5) {
+  if (timeLeft <= 6) {
     timerBar.classList.add("warning");
     timerText.classList.add("warning");
   } else {
@@ -384,7 +343,7 @@ function autoWrong() {
   btns[correctVisualPos].classList.add("correct");
 
   showExplanation();
-  setTimeout(goNext, 2500);
+  setTimeout(goNext, 3000);
 }
 
 // ── AÇIKLAMA GÖSTEr ──────────────────────────────────────
@@ -463,7 +422,7 @@ answersContainer.addEventListener("click", (e) => {
       }
 
       showExplanation();
-      setTimeout(goNext, 2500);
+      setTimeout(goNext, 3000);
       return;
     }
   }
@@ -499,7 +458,7 @@ answersContainer.addEventListener("click", (e) => {
     }
 
     showExplanation();
-    setTimeout(goNext, 2500);
+    setTimeout(goNext, 3000);
   }, 1000);
 });
 
@@ -543,7 +502,7 @@ function showResult() {
   const pct = Math.round((score / shuffledQuestions.length) * 100);
   let emoji, message;
   if (pct === 100)    { emoji = "🏆"; message = "Mükemmel! Tüm soruları doğru yanıtladın!"; }
-  else if (pct >= 80) { emoji = "🌟"; message = "Harika! Hormonal kontraseptifler konusunda bilgin çok güçlü!"; }
+  else if (pct >= 80) { emoji = "🌟"; message = "Harika! Preterm doğum ve düşük riski konusunda bilgin çok güçlü!"; }
   else if (pct >= 60) { emoji = "👍"; message = "İyi gidiyorsun! Biraz daha çalışırsan mükemmel olursun."; }
   else if (pct >= 40) { emoji = "📚"; message = "Fena değil, ama konulara tekrar göz atmak faydalı olur."; }
   else                { emoji = "💪"; message = "Üzülme, tekrar çalış ve bir daha dene!"; }
@@ -572,7 +531,7 @@ function showResult() {
 
 // ── KONFETİ ──────────────────────────────────────────────
 function launchConfetti() {
-  const colors = ["#f48fb1","#ff6f91","#ffd6e0","#fff59d","#c8e6c9","#b3e5fc","#e1bee7"];
+  const colors = ["#ce93d8","#9c27b0","#d1c4e9","#fff59d","#c8e6c9","#b3e5fc","#e1bee7"];
   for (let i = 0; i < 80; i++) {
     setTimeout(() => {
       const c = document.createElement("div");

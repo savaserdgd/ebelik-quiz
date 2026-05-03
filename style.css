@@ -9,9 +9,9 @@ html { height: 100%; overflow-x: hidden; }
 
 body {
   font-family: 'Nunito', sans-serif;
-  background: #fce4ec;
-  background-image: radial-gradient(circle at 20% 20%, #f8bbd0 0%, transparent 50%),
-                    radial-gradient(circle at 80% 80%, #ffd6e0 0%, transparent 50%);
+  background: #ede7f6;
+  background-image: radial-gradient(circle at 20% 20%, #d1c4e9 0%, transparent 50%),
+                    radial-gradient(circle at 80% 80%, #e8eaf6 0%, transparent 50%);
   background-attachment: fixed;
   display: flex;
   justify-content: center;
@@ -39,19 +39,19 @@ body {
 .title {
   font-size: 2rem;
   font-weight: 800;
-  color: #6b4c4c;
+  color: #4527a0;
   text-align: center;
   margin-bottom: 6px;
 }
 .title-sm {
   font-size: 1.2rem;
   font-weight: 800;
-  color: #6b4c4c;
+  color: #4527a0;
   text-align: center;
 }
 .subtitle {
   font-size: 0.95rem;
-  color: #9e7c7c;
+  color: #7e57c2;
   text-align: center;
   margin-bottom: 24px;
 }
@@ -61,8 +61,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  background: #fff8f9;
-  border: 1.5px solid #ffd6e0;
+  background: #f3e5f5;
+  border: 1.5px solid #ce93d8;
   border-radius: 16px;
   padding: 18px 24px;
   margin-bottom: 20px;
@@ -71,7 +71,7 @@ body {
 .info-item {
   font-size: 0.95rem;
   font-weight: 600;
-  color: #6b4c4c;
+  color: #4527a0;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -83,24 +83,24 @@ body {
   display: block;
   font-size: 0.9rem;
   font-weight: 700;
-  color: #6b4c4c;
+  color: #4527a0;
   margin-bottom: 8px;
 }
 .input-group input {
   width: 100%;
   padding: 13px 16px;
-  border: 2px solid #ffd6e0;
+  border: 2px solid #ce93d8;
   border-radius: 14px;
-  background: #fff8f9;
+  background: #f3e5f5;
   font-family: 'Nunito', sans-serif;
   font-size: 1rem;
   font-weight: 600;
-  color: #4a3030;
+  color: #311b92;
   outline: none;
   transition: border-color 0.2s;
 }
-.input-group input:focus { border-color: #f48fb1; }
-.input-group input::placeholder { color: #c9a0a8; font-weight: 400; }
+.input-group input:focus { border-color: #9c27b0; }
+.input-group input::placeholder { color: #b39ddb; font-weight: 400; }
 
 /* ── BUTONLAR ── */
 .start-btn {
@@ -108,35 +108,35 @@ body {
   padding: 16px;
   border: none;
   border-radius: 16px;
-  background: linear-gradient(135deg, #f48fb1, #e91e8c);
+  background: linear-gradient(135deg, #9c27b0, #673ab7);
   color: white;
   font-family: 'Nunito', sans-serif;
   font-size: 1.1rem;
   font-weight: 800;
   cursor: pointer;
   letter-spacing: 1px;
-  box-shadow: 0 6px 20px rgba(233, 30, 140, 0.28);
+  box-shadow: 0 6px 20px rgba(103, 58, 183, 0.35);
   transition: all 0.2s ease;
   margin-bottom: 12px;
 }
 .start-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(233, 30, 140, 0.38);
+  box-shadow: 0 10px 28px rgba(103, 58, 183, 0.45);
 }
 .scoreboard-btn {
   width: 100%;
   padding: 13px;
-  border: 2px solid #ffd6e0;
+  border: 2px solid #ce93d8;
   border-radius: 16px;
-  background: #fff8f9;
-  color: #c2185b;
+  background: #f3e5f5;
+  color: #6a1b9a;
   font-family: 'Nunito', sans-serif;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
 }
-.scoreboard-btn:hover { background: #fff0f3; border-color: #f48fb1; }
+.scoreboard-btn:hover { background: #ede7f6; border-color: #9c27b0; }
 
 /* ── OYUN HEADER ── */
 .header {
@@ -148,7 +148,7 @@ body {
 #player-name-display {
   font-size: 0.8rem;
   font-weight: 700;
-  color: #9e7c7c;
+  color: #7e57c2;
   display: block;
   margin-bottom: 2px;
 }
@@ -166,8 +166,8 @@ body {
 #progress {
   font-size: 0.95rem;
   font-weight: 700;
-  color: #6b4c4c;
-  background: #fff0f3;
+  color: #4527a0;
+  background: #ede7f6;
   padding: 5px 12px;
   border-radius: 20px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.07);
@@ -199,14 +199,14 @@ body {
 .timer-wrapper {
   width: 100px;
   height: 8px;
-  background: #ffd6e0;
+  background: #d1c4e9;
   border-radius: 10px;
   overflow: hidden;
 }
 #timer-bar {
   height: 100%;
   width: 100%;
-  background: linear-gradient(90deg, #ff6f91, #ff4f75);
+  background: linear-gradient(90deg, #9c27b0, #673ab7);
   border-radius: 10px;
   transition: width 1s linear, background 0.5s;
 }
@@ -214,7 +214,7 @@ body {
 #timer-text {
   font-size: 0.85rem;
   font-weight: 700;
-  color: #6b4c4c;
+  color: #4527a0;
   min-width: 28px;
   text-align: right;
 }
@@ -233,22 +233,22 @@ body {
   align-items: center;
   gap: 6px;
   padding: 8px 18px;
-  border: 2px solid #ffd6e0;
+  border: 2px solid #ce93d8;
   border-radius: 24px;
-  background: #fff8f9;
-  color: #6b4c4c;
+  background: #f3e5f5;
+  color: #4527a0;
   font-family: 'Nunito', sans-serif;
   font-size: 0.88rem;
   font-weight: 800;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 2px 8px rgba(200,100,120,0.1);
+  box-shadow: 0 2px 8px rgba(103,58,183,0.1);
 }
 .joker-btn:hover:not(.used) {
-  background: #fff0f3;
-  border-color: #f48fb1;
+  background: #ede7f6;
+  border-color: #9c27b0;
   transform: translateY(-2px);
-  box-shadow: 0 5px 14px rgba(200,100,120,0.2);
+  box-shadow: 0 5px 14px rgba(103,58,183,0.2);
 }
 .joker-btn.used {
   opacity: 0.35;
@@ -273,13 +273,13 @@ body {
 
 /* ── SORU KUTUSU ── */
 .question-box {
-  background: #fff8f9;
+  background: #f3e5f5;
   padding: 22px 20px;
   border-radius: 18px;
   margin-bottom: 14px;
-  color: #4a3030;
-  box-shadow: 0 6px 24px rgba(200, 100, 120, 0.1);
-  border: 1.5px solid #ffd6e0;
+  color: #311b92;
+  box-shadow: 0 6px 24px rgba(103, 58, 183, 0.12);
+  border: 1.5px solid #ce93d8;
   min-height: 90px;
   display: flex;
   align-items: center;
@@ -339,24 +339,24 @@ body {
 }
 .answer-btn {
   padding: 14px 10px;
-  border: 2px solid #ffd6e0;
+  border: 2px solid #ce93d8;
   border-radius: 14px;
-  background: #fff8f9;
-  color: #4a3030;
+  background: #f3e5f5;
+  color: #311b92;
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
   font-size: 0.88rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 3px 10px rgba(200, 100, 120, 0.07);
+  box-shadow: 0 3px 10px rgba(103, 58, 183, 0.08);
   display: flex;
   align-items: center;
   gap: 8px;
   text-align: left;
 }
 .answer-btn .letter {
-  background: #ffd6e0;
-  color: #6b4c4c;
+  background: #d1c4e9;
+  color: #4527a0;
   font-weight: 800;
   font-size: 0.78rem;
   width: 24px;
@@ -372,16 +372,16 @@ body {
 .answer-btn:focus { outline: none; box-shadow: none; }
 .answer-btn:focus-visible { outline: none; box-shadow: none; }
 .answer-btn:not(:disabled):hover {
-  background: #fff0f3;
-  border-color: #ff9fb5;
+  background: #ede7f6;
+  border-color: #9c27b0;
   transform: translateY(-2px);
 }
-.answer-btn:not(:disabled):hover .letter { background: #ffb3c6; }
+.answer-btn:not(:disabled):hover .letter { background: #b39ddb; }
 
 .answer-btn.thinking {
   animation: pulse 0.7s ease infinite;
-  border-color: #c0a0a8;
-  background: #ffeef2;
+  border-color: #9c27b0;
+  background: #ede7f6;
 }
 @keyframes pulse {
   0%   { transform: scale(1); }
@@ -479,12 +479,12 @@ body {
 
 /* ── SONUÇ KUTUSU ── */
 .result-box {
-  background: #fff8f9;
+  background: #f3e5f5;
   border-radius: 18px;
   padding: 28px 22px;
   text-align: center;
-  box-shadow: 0 6px 24px rgba(200, 100, 120, 0.12);
-  border: 1.5px solid #ffd6e0;
+  box-shadow: 0 6px 24px rgba(103, 58, 183, 0.14);
+  border: 1.5px solid #ce93d8;
   animation: popIn 0.4s ease;
   width: 100%;
 }
@@ -493,15 +493,15 @@ body {
   to   { opacity: 1; transform: scale(1); }
 }
 .result-box .emoji { font-size: 2.8rem; margin-bottom: 10px; }
-.result-box h2 { font-size: 1.4rem; font-weight: 800; color: #4a3030; margin-bottom: 6px; }
-.result-box .score-detail { font-size: 0.95rem; color: #9e7c7c; margin-bottom: 4px; }
+.result-box h2 { font-size: 1.4rem; font-weight: 800; color: #311b92; margin-bottom: 6px; }
+.result-box .score-detail { font-size: 0.95rem; color: #7e57c2; margin-bottom: 4px; }
 .result-box .motivation {
   font-size: 0.95rem;
   font-weight: 700;
-  color: #6b4c4c;
+  color: #4527a0;
   margin: 14px 0;
   padding: 10px 14px;
-  background: #fff0f3;
+  background: #ede7f6;
   border-radius: 10px;
 }
 .restart-btn {
@@ -510,18 +510,18 @@ body {
   padding: 13px;
   border: none;
   border-radius: 14px;
-  background: linear-gradient(135deg, #ff6f91, #ff4f75);
+  background: linear-gradient(135deg, #9c27b0, #673ab7);
   color: white;
   font-family: 'Nunito', sans-serif;
   font-size: 1rem;
   font-weight: 800;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(255, 80, 120, 0.3);
+  box-shadow: 0 4px 14px rgba(103, 58, 183, 0.3);
   transition: all 0.2s;
 }
 .restart-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 80, 120, 0.4);
+  box-shadow: 0 6px 20px rgba(103, 58, 183, 0.4);
 }
 
 /* ── SKOR TABLOSU ── */
@@ -533,19 +533,19 @@ body {
   margin-top: 16px;
 }
 .score-entry {
-  background: #fff8f9;
-  border: 1.5px solid #ffd6e0;
+  background: #f3e5f5;
+  border: 1.5px solid #ce93d8;
   border-radius: 14px;
   padding: 14px 18px;
   display: flex;
   align-items: center;
   gap: 14px;
-  box-shadow: 0 3px 10px rgba(200,100,120,0.07);
+  box-shadow: 0 3px 10px rgba(103,58,183,0.07);
 }
 .score-rank {
   font-size: 1.3rem;
   font-weight: 800;
-  color: #f48fb1;
+  color: #9c27b0;
   min-width: 32px;
   text-align: center;
 }
@@ -553,15 +553,15 @@ body {
 .score-rank.silver { color: #9e9e9e; }
 .score-rank.bronze { color: #a0522d; }
 .score-info { flex: 1; }
-.score-name { font-size: 0.95rem; font-weight: 800; color: #4a3030; }
-.score-date { font-size: 0.78rem; color: #b09090; margin-top: 2px; }
+.score-name { font-size: 0.95rem; font-weight: 800; color: #311b92; }
+.score-date { font-size: 0.78rem; color: #9575cd; margin-top: 2px; }
 .score-points-col { text-align: right; }
-.score-pts { font-size: 1rem; font-weight: 800; color: #c2185b; }
-.score-frac { font-size: 0.78rem; color: #b09090; margin-top: 2px; }
+.score-pts { font-size: 1rem; font-weight: 800; color: #6a1b9a; }
+.score-frac { font-size: 0.78rem; color: #9575cd; margin-top: 2px; }
 .score-frac span { font-size: 0.72rem; }
 .empty-scores {
   text-align: center;
-  color: #b09090;
+  color: #9575cd;
   font-size: 0.95rem;
   padding: 32px 0;
 }
