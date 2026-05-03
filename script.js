@@ -51,7 +51,7 @@ const allQuestions = [
     question: "Preterm eylem belirtileri gösteren bir gebeye ebelik bakımında önerilen ilk ve en temel uygulama hangisidir?",
     answers: [" Acil olarak sezaryen hazırlığı yapmak", "Yatak istirahati ve fiziksel aktiviteyi kısıtlamak", "Gebeyi hastane koridorunda yürüyüş yapmaya teşvik etmek", "Bebeğin hemen doğması için ıkınma egzersizlerine başlamak"],
     correct: 1,
-    explanation: "Düşüklerin büyük çoğunluğu (%80'den fazlası) ilk trimesterde, yani gebeliğin ilk 12 haftasında gerçekleşir."
+explanation: "Preterm eylem belirtilerinde ebelik bakımının temel ilkesi yatak istirahati ve fiziksel aktivitenin kısıtlanmasıdır. Bu uygulama rahim kasılmalarını azaltmaya ve doğumu geciktirmeye yardımcı olur."
   },
   {
     question: "Kanama olan ancak rahim ağzının kapalı olduğu ve gebeliğin devam edebileceği düşük türü hangisidir?",
@@ -61,7 +61,7 @@ const allQuestions = [
   },
   {
   question: "Arka arkaya 3 veya daha fazla gebelik kaybı yaşanması hangi düşük sınıfına girer?",
-  answers: ["Missed Abortus", "Tekrarlayan Düşük", "Abortus İmminens", "Abortus İnevitable"],
+  answers: ["Missed Abortus", "Rekürrent abortus (Tekrarlayan düşük)", "Abortus İmminens", "Abortus İnevitable"],
   correct: 1,
   explanation: "Arka arkaya 3 veya daha fazla gebelik kaybı 'Tekrarlayan Düşük' (Habitual Abortus) olarak tanımlanır. Genetik, anatomik veya hormonal nedenler araştırılmalıdır."
   },
