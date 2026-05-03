@@ -60,6 +60,12 @@ const allQuestions = [
     explanation: "Abortus İmminens'te (tehdit eden düşük) kanama vardır ancak rahim ağzı kapalıdır ve gebelik devam edebilir. Yatak istirahati ve yakın takip önerilir."
   },
   {
+  question: "Arka arkaya 3 veya daha fazla gebelik kaybı yaşanması hangi düşük sınıfına girer?",
+  answers: ["Missed Abortus", "Tekrarlayan Düşük", "Abortus İmminens", "Abortus İnevitable"],
+  correct: 1,
+  explanation: "Arka arkaya 3 veya daha fazla gebelik kaybı 'Tekrarlayan Düşük' (Habitual Abortus) olarak tanımlanır. Genetik, anatomik veya hormonal nedenler araştırılmalıdır."
+  },
+  {
     question: "Embriyonun öldüğü ancak rahim dışına atılamadığı, genellikle ultrasonla fark edilen durum hangisidir?",
     answers: ["Tam düşük", "Tam olmayan düşük", "Sessiz düşük (Missed Abortus)", "Kaçınılmaz düşük"],
     correct: 2,
