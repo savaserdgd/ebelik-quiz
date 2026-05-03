@@ -21,6 +21,7 @@ let joker5050Used    = false;
 let jokerDoubleUsed  = false;
 let doubleAnswerMode = false;
 let doubleFirstPick  = null;
+let clickBlocked     = false; // geçiş sırasında ghost tap engeli
 
 // Karıştırılmış soru listesi ve şık haritası
 let shuffledQuestions = [];
@@ -47,9 +48,9 @@ const allQuestions = [
     explanation: "Kortikosteroidler, preterm doğum riski olan gebelerde fetal akciğer maturasyonunu (olgunlaşmasını) hızlandırmak için kullanılır."
   },
   {
-    question: "Düşük (Abortus) en sık hangi dönemde görülür?",
-    answers: ["İlk trimester (ilk 12 hafta)", "16-20. haftalar arası", "20-24. haftalar arası", "Son trimester"],
-    correct: 0,
+    question: "Preterm eylem belirtileri gösteren bir gebeye ebelik bakımında önerilen ilk ve en temel uygulama hangisidir?",
+    answers: [" Acil olarak sezaryen hazırlığı yapmak", "Yatak istirahati ve fiziksel aktiviteyi kısıtlamak", "Gebeyi hastane koridorunda yürüyüş yapmaya teşvik etmek", "Bebeğin hemen doğması için ıkınma egzersizlerine başlamak"],
+    correct: 1,
     explanation: "Düşüklerin büyük çoğunluğu (%80'den fazlası) ilk trimesterde, yani gebeliğin ilk 12 haftasında gerçekleşir."
   },
   {
@@ -154,6 +155,7 @@ function prepareFirstQuestion() {
   jokerDoubleUsed = false;
   doubleAnswerMode = false;
   doubleFirstPick = null;
+  clickBlocked = false;
 
   updateJokerUI();
   updateStreakUI();
@@ -211,6 +213,7 @@ function showQuestion() {
 
     updateJokerUI();
     startTimer();
+    setTimeout(() => { clickBlocked = false; }, 400); // slide-in bittikten sonra aç
   }, 300);
 }
 
@@ -371,7 +374,7 @@ function hideExplanation() {
 // ── BUTON TIKLAMA ────────────────────────────────────────
 answersContainer.addEventListener("click", (e) => {
   const btn = e.target.closest(".answer-btn");
-  if (!btn || answered) return;
+  if (!btn || answered || clickBlocked) return;
   if (btn.classList.contains("eliminated")) return;
   btn.blur();
 
@@ -478,6 +481,7 @@ function showPointsPopup(btn, pts) {
 // ── SONRAKİ SORU ─────────────────────────────────────────
 function goNext() {
   hideExplanation();
+  clickBlocked = true;
   currentQuestionIndex++;
   if (currentQuestionIndex < shuffledQuestions.length) {
     showQuestion();
